@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <style>
+        /* Logout Button Styling */
+        .logout-container {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            z-index: 1000; /* Ensures it's above other elements */
+        }
+
+        .logout-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .logout-icon {
+            font-size: 40px;
+            color: black;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .logout-icon:hover {
+            color: red;
+            transform: scale(1.2);
+        }
+
+        /* Ensures the form doesn't overlap with the logout button */
+        .container {
+            padding-top: 80px; /* Pushes content down */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logout Button (Fixed in Top-Right) -->
+    <div class="logout-container">
+        <form id="logout-form" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">
+                <i class="bi bi-box-arrow-right fs-1 logout-icon"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Product Form -->
+    <div class="container">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Add a New Product</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="id_name">Product Name:</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_description">Author:</label>
+                        {{ form.author }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_price">Price:</label>
+                        {{ form.price }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_image">Quantity :</label>
+                        {{ form.Quantity }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_image">Product Image:</label>
+                        {{ form.image }}
+                    </div>
+
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-plus-circle"></i> Add Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
